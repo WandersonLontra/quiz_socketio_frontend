@@ -1,0 +1,58 @@
+.container{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--orange-500);
+    clip-path: circle(20% at 25% 10%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--purple-500);
+    clip-path: circle(13% at 70% 90%);
+  }
+
+  .askAccess{
+    width: 100%;
+    max-width: 1140px;
+    display: grid;
+    grid-column: auto;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 1.75rem;
+
+    button{
+      padding: 1rem 2rem;
+      width: 18rem;
+      height: 8.5rem;
+      outline: none;
+      border: none;
+      border-radius: 0.875rem;
+      color: var(--white);
+      font-weight: var(--medium);
+      font-size: 1.25rem;
+
+      background: var(--purple-500);
+      &:last-child{
+        background: var(--orange-500);
+      }
+    }
+    z-index: 9;
+  }
+  
+}

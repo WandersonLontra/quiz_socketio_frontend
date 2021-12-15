@@ -1,0 +1,79 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1{
+        color: var(--purple-500);
+        font-size: 1.875rem;
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
+        
+        @media screen and (max-width: 500px) {
+            font-size: 1.5rem;
+            line-height: 2.12rem;
+        }
+    }
+    
+    div{
+        width: 100%;
+        padding: 1rem 0.5rem;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        background: var(--white);
+
+        label{
+            font-size: 0.875rem;
+            line-height: 1.5rem;
+            color: var(--gray-500);
+        }
+
+        input {
+         width: 100%;
+         padding: 0 1.5rem;
+         height: 3rem;
+         background: var(--gray-200);
+     
+         color: var(--gray-700);
+         font-size: 1.25rem;
+         line-height: 1.875rem;
+         font-weight: var(--medium);
+     
+         border-radius: 0.25rem;
+         border: 1px solid var(--gray-300);
+     
+         &:focus{
+             outline-color: var(--purple-500);
+         }
+        }
+    }
+    
+
+
+    button[type="submit"]{
+        width: 50%;
+        padding: 0.875rem 1.5rem;
+        background: var(--green-500);
+        color: var(--green-100);
+        border-radius: 0.25rem;
+        border: none;
+        
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+    
+        margin-top: 1.5rem;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        
+        transition: filter 0.2s;
+    
+        &:hover{
+            filter: brightness(0.9);
+        }
+    }
+}
