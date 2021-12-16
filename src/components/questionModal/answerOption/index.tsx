@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import styles from '../questionModal/Modal.module.scss';
+import styles from '../Modal.module.scss';
 
 
 interface StudentAnswersData {

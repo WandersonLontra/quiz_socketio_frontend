@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { RiCloseLine } from 'react-icons/ri';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
-import AnswerOption from "../answerOption";
+import AnswerOption from "./answerOption";
 
 import styles from './Modal.module.scss';
 
