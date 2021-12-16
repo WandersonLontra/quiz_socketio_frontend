@@ -8,7 +8,7 @@ import { useUserContext } from "../../context/personContext";
 
 import Footer from "../../components/footer";
 
-import NewQuestionModal from "../../components/newQuestionModal";
+import CreateQuestionModal from "../../components/createQuestionModal";
 
 import styles from './Professor.module.scss';
 
@@ -26,8 +26,6 @@ const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || '',{ transports: ["webso
 export default function TeacherPage() {
     const [openModal, setOpenModal] = useState(false);
     const [newQuestion, setNewQuestion] = useState<newQuestionData>(null);
-
-    // const { socket } = useUserContext();
 
     useEffect(() => {
         socket.emit('createQuestion', newQuestion);
@@ -60,7 +58,7 @@ export default function TeacherPage() {
         
             <Footer />  
 
-            <NewQuestionModal 
+            <CreateQuestionModal 
                 isOpen={openModal}
                 onRequestClose={handleUserModalClose}
                 newQuestion={setNewQuestion}

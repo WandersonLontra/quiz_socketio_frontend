@@ -23,7 +23,7 @@ interface NewQuestionModalProps {
     newQuestion: Dispatch<SetStateAction<newQuestionData | null>>;
 }
 
-export default function NewQuestionModal({isOpen, onRequestClose, newQuestion}: NewQuestionModalProps){
+export default function CreateQuestionModal({isOpen, onRequestClose, newQuestion}: NewQuestionModalProps){
     const [questionAbout, setQuestionAbout] = useState('');
     const [question, setQuestion] = useState('');
     const [options, setOptions] = useState('');
