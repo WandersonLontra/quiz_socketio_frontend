@@ -31,6 +31,14 @@ interface StudentAnswerData {
     [key: string]: answerData[]
 }
 
+interface StudentCardData {
+    name: string;
+    answers_amount: number;
+    corrects: number;
+    wrongs: number;
+    percents: number;
+}
+
 const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || '',{ transports: ["websocket"] });
 
 export default function TeacherPage() {
@@ -52,7 +60,28 @@ export default function TeacherPage() {
         
     })();
 
-    console.log(studentAnswers);
+    const students: StudentCardData[] = [];
+    for( let student in studentAnswers){
+        let corrects = 0;
+        let wrongs = 0;
+        const data = studentAnswers[student].reduce((acc, curr: answerData, index) => {
+
+            if(curr.isCorrectAnswer){
+                corrects++;
+            } else if (!curr.isCorrectAnswer){
+                wrongs++;
+            }
+            acc.percents = (100 * corrects) / questionsAmount;
+            acc.name = student;
+            acc.answers_amount = index + 1;
+            acc.corrects = corrects;
+            acc.wrongs = wrongs;
+
+            return acc
+        },{} as StudentCardData);
+
+        students.push(data);
+    };
 
     function handleUserModalClose(){
         setOpenModal(false);
@@ -73,21 +102,23 @@ export default function TeacherPage() {
 
             <section className={styles.studentSpace}>
                 <h1>Total de questões: {questionsAmount}</h1>
+                {students.map((student) => (
+                    <div key={student.name}>
+                        <h3>Aluno: {student.name}</h3>
+                        <div className={styles.wrapperInput}>
+                            <span className={styles.leftInput}>0%</span>
+                            <input type="range" min="0" max="100" value={student.percents} readOnly />
+                            <span className={styles.rightInput}>100%</span>
 
-                <div>
-                    <h3>Aluno: João</h3>
-                    <div className={styles.wrapperInput}>
-                        <span className={styles.leftInput}>0%</span>
-                        <input type="range" min="0" max="100" value={40}/>
-                        <span className={styles.rightInput}>100%</span>
-
-                        <div>
-                            <p>Respondeu 5 de {questionsAmount} questões</p>
-                            <p>Acertou: 4</p>
-                            <p>Errou: 1</p>
+                            <div>
+                                <p>Respondeu {student.answers_amount} de {questionsAmount} questões</p>
+                                <p>Acertou: {student.corrects}</p>
+                                <p>Errou: {student.wrongs}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                ))}
             </section>
 
         
