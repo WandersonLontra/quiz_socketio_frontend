@@ -115,7 +115,7 @@ export default function CreateQuestionModal({isOpen, onRequestClose, newQuestion
                 </div>
 
                 <div>
-                    <label htmlFor="options">Escreva a(s) de resposta separados por /</label>
+                    <label htmlFor="options">Escreva a(s) resposta(s) separados por /</label>
                     <input 
                         required
                         type="text" 

@@ -59,7 +59,7 @@ export default function StudentPage() {
                     isCorrectAnswer
                 }
 
-                socket.emit('sendAnswerData',sendAnswerData);
+                socket.emit('studentAnswersData',sendAnswerData);
             } else {    
                 const sendAnswerData = {
                     id: studentAnswers.id,
@@ -67,7 +67,7 @@ export default function StudentPage() {
                     student_name: userName,
                     isCorrectAnswer
                 }
-                socket.emit('sendAnswerData',sendAnswerData);
+                socket.emit('studentAnswersData',sendAnswerData);
             }
         }
 

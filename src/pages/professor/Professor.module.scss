@@ -67,23 +67,6 @@
     }
 
 
-
-    p {
-        color: var(--gray-500);
-        font-size: 1.25rem;
-        line-height: 1.875rem;
-        font-weight: var(--medium);
-
-        position: absolute;
-        bottom: 15vh;
-    }
-
-
-
-
-
-
-
     footer {
         position: absolute;
         bottom: 0;
@@ -125,3 +108,100 @@
         }
     }
 }
+
+section.studentSpace{
+    width: 100%;
+    max-width: 768px;
+    margin-top: 3rem;
+
+    padding: 1.5rem;
+    border-radius: 0.6rem;
+
+    background: rgba(255,255,255, 0.5);
+    backdrop-filter: blur(10px);
+
+    z-index: 9;
+
+    h1{
+        color: var(--gray-700);
+    }
+
+    >div{
+        width: 100%;
+        padding: 1rem 2rem;
+        margin-top: 1rem;
+
+        border: 1px solid var(--purple-500);
+        border-radius: 0.6rem;
+
+        h3{
+            color: var(--gray-500);
+        }
+
+        div.wrapperInput{
+            margin-top: 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+
+            span {
+                position: absolute;
+                font-size: 0.875rem;
+                font-weight: var(--medium);
+                
+            }
+            span.leftInput{
+                top: -20px;
+                left: 0;
+                color: var(--red-500);
+            }
+            span.rightInput{
+                top: -20px;
+                right: 0;
+                color: var(--green-500);
+            }
+
+            input[type="range"]{
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                height: 2rem;
+                width: 100%;
+                border-radius: 4px;
+                border: none;
+                outline: none;
+                background: linear-gradient(90deg, var(--red-500) 0%, var(--orange-300) 42%, var(--green-500) 100%);
+
+                box-shadow: 3px 3px 7px -2px var(--purple-500);
+                
+                &::-webkit-slider-thumb{
+                    -webkit-appearance: none;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 2.5rem;
+                    background: var(--purple-600);
+                }
+                &::-moz-range-thumb{
+                    -webkit-appearance: none;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 2.5rem;
+                    background: var(--purple-600);
+                }
+            }
+
+            p{
+                margin-top: 0.25rem;
+                color: var(--gray-500);
+                font-size: 1rem;
+                line-height: 1.625rem;
+                font-weight: var(--medium);
+
+                &:first-child{
+                    margin-top: 1rem;
+                }
+            }
+        }
+    }
+ }
