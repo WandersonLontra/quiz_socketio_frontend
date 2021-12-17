@@ -12,17 +12,16 @@
 
     position: relative;
 
-    // &::after {
-    //     content: '';
-    //     position: absolute;
-    //     top: 0; 
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background: var(--orange-500);
-    //     clip-path: circle(28% at 80% 75%);
-    //     z-index: 0;
-    // }
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0; 
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--orange-500);
+        clip-path: circle(28% at 80% 75%);
+    }
     
     .questionAbout{
         width: 100%;
@@ -61,6 +60,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        
+        position: relative;
+        z-index: 9;
 
         button.submitButton {
             width: 100%;

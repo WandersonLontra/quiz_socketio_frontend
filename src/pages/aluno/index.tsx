@@ -21,19 +21,56 @@ interface StudentAnswersData {
     isMarked: boolean;
 }
 
+interface AnswersComparison {
+    id: string;
+    question_about: string;
+    answerGiven: StudentAnswersData[];
+    correctAnswer: string[];
+}
+
 const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || '', { transports: ["websocket"] });
 
 export default function StudentPage() {
     const [openModal, setOpenModal] = useState(false);
     const [socketQuestions, setSocketQuestions] = useState<QuestionData[]>([]);
     const [questionIntoModal, setQuestionIntoModal] = useState({} as QuestionData);
-    const [studentAnswers, setStudentAnswers] = useState<StudentAnswersData[]>([]);
+    const [studentAnswers, setStudentAnswers] = useState({} as AnswersComparison);
     
     const { userName } = useUserContext();
     
     useEffect(() => {
-        console.log(studentAnswers);
-        // setOpenModal(false);
+        if (studentAnswers.answerGiven){
+            let isCorrectAnswer = false;
+            if(studentAnswers.answerGiven?.length === studentAnswers.correctAnswer?.length){
+                const check = studentAnswers.answerGiven?.filter(({option}) => (
+                    studentAnswers.correctAnswer?.includes(option)
+                ));
+
+                if(check.length === studentAnswers.correctAnswer?.length){
+                    isCorrectAnswer = true;
+                } else {
+                    isCorrectAnswer = false;
+                };
+
+                const sendAnswerData = {
+                    id: studentAnswers.id,
+                    question_about: studentAnswers.question_about,
+                    student_name: userName,
+                    isCorrectAnswer
+                }
+
+                socket.emit('sendAnswerData',sendAnswerData);
+            } else {    
+                const sendAnswerData = {
+                    id: studentAnswers.id,
+                    question_about: studentAnswers.question_about,
+                    student_name: userName,
+                    isCorrectAnswer
+                }
+                socket.emit('sendAnswerData',sendAnswerData);
+            }
+        }
+
     },[studentAnswers])
 
     ;(async () => {

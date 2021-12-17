@@ -24,16 +24,24 @@ interface StudentAnswersData {
     isMarked: boolean;
 }
 
+interface AnswersComparison {
+    id: string;
+    question_about: string;
+    answerGiven: StudentAnswersData[];
+    correctAnswer: string[];
+}
+
 interface QuestionModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
     question: QuestionData;
-    studentAnswer: Dispatch<SetStateAction<StudentAnswersData[]>>
+    studentAnswer: Dispatch<SetStateAction<AnswersComparison>>
 }
 
 
 export default function QuestionModal({ isOpen, onRequestClose, question, studentAnswer }: QuestionModalProps) {
     const [studentAnswersMarked, setStudentAnswersMarked] = useState<StudentAnswersData[]>([]);
+
 
     const handleClick = useCallback(() => {
         const student_answer = studentAnswersMarked.reduce((acc,{option,isMarked}) => {
@@ -59,11 +67,16 @@ export default function QuestionModal({ isOpen, onRequestClose, question, studen
             return acc;
             
         },[] as StudentAnswersData[]);
-
-        studentAnswer(student_answer);
+        
+        studentAnswer({
+            id: question.id,
+            question_about: question.question_about,
+            answerGiven: student_answer,
+            correctAnswer: question.answers
+        });
 
         onRequestClose();
-    },[studentAnswersMarked])
+    },[studentAnswersMarked, question])
 
     return (
         <Modal
