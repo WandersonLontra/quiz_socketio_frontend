@@ -70,7 +70,6 @@ export default function StudentPage() {
                 socket.emit('studentAnswersData',sendAnswerData);
             }
         }
-
     },[studentAnswers])
 
     ;(async () => {
@@ -88,7 +87,6 @@ export default function StudentPage() {
         });
     })();
 
-
     function handleOpenModal(question: QuestionData){
         setQuestionIntoModal(question);
         setOpenModal(true);
@@ -100,6 +98,8 @@ export default function StudentPage() {
 
     return (
         <main className={styles.container}>
+            <title>QuizQuiz | Área do aluno</title>
+
             <h1>{`Olá ${userName}`}</h1>
 
             <section>
@@ -114,7 +114,6 @@ export default function StudentPage() {
                 ))}
             </section>
 
-
             <p>
                 Preste atenção no professor.
             </p>
@@ -127,7 +126,6 @@ export default function StudentPage() {
                 question={questionIntoModal}
                 studentAnswer={setStudentAnswers}
             />
-
         </main>
     )
 }

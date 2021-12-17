@@ -38,25 +38,20 @@ interface QuestionModalProps {
     studentAnswer: Dispatch<SetStateAction<AnswersComparison>>
 }
 
-
 export default function QuestionModal({ isOpen, onRequestClose, question, studentAnswer }: QuestionModalProps) {
     const [studentAnswersMarked, setStudentAnswersMarked] = useState<StudentAnswersData[]>([]);
-
 
     const handleClick = useCallback(() => {
         const student_answer = studentAnswersMarked.reduce((acc,{option,isMarked}) => {
             if(isMarked){
                 const isExisted = acc.findIndex(element => (element.option === option && element.isMarked));
-    
                 if(isExisted === -1){
                     acc.push({
                         option,
                         isMarked 
                     });
-    
                     return acc;
                 } 
-    
                 acc.splice(isExisted,1);
             }
             
@@ -65,7 +60,6 @@ export default function QuestionModal({ isOpen, onRequestClose, question, studen
             acc.splice(isExisted,1);
     
             return acc;
-            
         },[] as StudentAnswersData[]);
         
         studentAnswer({
@@ -93,7 +87,6 @@ export default function QuestionModal({ isOpen, onRequestClose, question, studen
                 <RiCloseLine />
             </button>
 
-
             <header className={styles.questionAbout}>
                 <button>
                     <span></span>
@@ -109,7 +102,7 @@ export default function QuestionModal({ isOpen, onRequestClose, question, studen
                             <AnswerOption 
                                 option={option}
                                 response={setStudentAnswersMarked}
-                                previusOptionMarked={studentAnswersMarked}
+                                previewsOptionMarked={studentAnswersMarked}
                             />
                         </div>
                     ))}
@@ -121,7 +114,6 @@ export default function QuestionModal({ isOpen, onRequestClose, question, studen
                     <span><AiOutlineArrowRight /></span>
                 </button>
             </section>
-
         </Modal>
     )
 }

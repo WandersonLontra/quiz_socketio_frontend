@@ -9,7 +9,6 @@ import styles from './Modal.module.scss';
 
 Modal.setAppElement('#__next');
 
-
 type newQuestionData = {
     question_about: string;
     question: string;
@@ -40,15 +39,12 @@ export default function CreateQuestionModal({isOpen, onRequestClose, newQuestion
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         let data = {
             question_about: questionAbout,
             question: question,
             options: options.split('/',5),
             answers: answers.split('/')
         }
-
-
         await newQuestion(data);
 
         await cleanState();

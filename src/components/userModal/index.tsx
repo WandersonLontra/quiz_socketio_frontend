@@ -10,8 +10,6 @@ import { FaSignInAlt } from 'react-icons/fa';
 
 import styles from "./Modal.module.scss";
 
-
-
 Modal.setAppElement('#__next');
 
 interface userModalProps {
@@ -50,7 +48,6 @@ export default function UserModal({isOpen, userType, onRequestClose}:userModalPr
             </button>
 
             <form onSubmit={handleSubmit} className={styles.container}>
-
                 <h1>{`Olá ${userType}, qual o seu nome?`}</h1>
 
                 <input 

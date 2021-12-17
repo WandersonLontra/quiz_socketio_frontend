@@ -56,16 +56,12 @@ export default function TeacherPage() {
     socket.on('answersToTeacher', (answersReceived: StudentAnswerData) => setStudentAnswers(answersReceived) );
 
     socket.on('questionsAmount', (questionsAmount: number) => setQuestionsAmount(questionsAmount))
-    ;(async () => {
-        
-    })();
 
     const students: StudentCardData[] = [];
     for( let student in studentAnswers){
         let corrects = 0;
         let wrongs = 0;
         const data = studentAnswers[student].reduce((acc, curr: answerData, index) => {
-
             if(curr.isCorrectAnswer){
                 corrects++;
             } else if (!curr.isCorrectAnswer){
@@ -89,6 +85,7 @@ export default function TeacherPage() {
 
     return(
         <main className={styles.container}>
+            <title>QuizQuiz | Área do professor</title>
             <header>
                 <h1>{`Olá ${userName}`}</h1>
                 <button
@@ -99,7 +96,6 @@ export default function TeacherPage() {
                     Novo
                 </button>
             </header>
-
             <section className={styles.studentSpace}>
                 <h1>Total de questões: {questionsAmount}</h1>
                 {students.map((student) => (
@@ -120,7 +116,6 @@ export default function TeacherPage() {
 
                 ))}
             </section>
-
         
             <Footer />  
 
@@ -129,7 +124,6 @@ export default function TeacherPage() {
                 onRequestClose={handleUserModalClose}
                 newQuestion={setNewQuestion}
             />       
-
         </main>
     )
 }

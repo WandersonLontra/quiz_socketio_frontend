@@ -15,6 +15,7 @@ export default function Home() {
 
   return(
     <main className={styles.container}>
+      <title>QuizQuiz | Seja bem vindo</title>
       <div className={styles.askAccess}>
         <button 
           onClick={() => {
@@ -40,7 +41,6 @@ export default function Home() {
         userType={userType}
         onRequestClose={handleUserModalClose}
       />
-
     </main>
   )
 }
