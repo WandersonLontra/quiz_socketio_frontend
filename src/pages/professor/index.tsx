@@ -21,18 +21,35 @@ type QuestionData = {
 
 type newQuestionData = QuestionData | null;
 
+type answerData = {
+    id: string;
+    question_about: string;
+    isCorrectAnswer: boolean;
+}
+
+interface StudentAnswerData {
+    [key: string]: answerData[]
+}
+
 const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || '',{ transports: ["websocket"] });
 
 export default function TeacherPage() {
     const [openModal, setOpenModal] = useState(false);
     const [newQuestion, setNewQuestion] = useState<newQuestionData>(null);
+    const [ studentAnswers, setStudentAnswers ] = useState({} as StudentAnswerData);
+
+    const { userName } = useUserContext();
 
     useEffect(() => {
         socket.emit('createQuestion', newQuestion);
     },[newQuestion])
 
-    const { userName } = useUserContext();
+    socket.on('sendAnswersToTeacher', (answersReceived: StudentAnswerData) => setStudentAnswers(answersReceived) );
+    ;(async () => {
+        
+    })();
 
+    console.log(studentAnswers);
 
     function handleUserModalClose(){
         setOpenModal(false);
