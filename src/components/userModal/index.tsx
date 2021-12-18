@@ -37,7 +37,7 @@ export default function UserModal({isOpen, userType, onRequestClose}:userModalPr
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             overlayClassName="React-Modal-Overlay"
-            className="React-Modal-Content"
+            className="React-Modal-Content animate__animated animate__bounceInUp"
         >
             <button
                 type="button"

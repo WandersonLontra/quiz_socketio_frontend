@@ -77,7 +77,7 @@ export default function QuestionModal({ isOpen, onRequestClose, question, studen
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             overlayClassName="React-Modal-Overlay"
-            className={styles.wrapperContent}
+            className={`${styles.wrapperContent} animate__animated animate__bounceInUp`}
         >
             <button
                 type="button"

@@ -100,13 +100,14 @@ export default function StudentPage() {
         <main className={styles.container}>
             <title>QuizQuiz | Área do aluno</title>
 
-            <h1>{`Olá ${userName}`}</h1>
+            <h1 className="animate__animated animate__bounceInLeft">{`Olá ${userName}`}</h1>
 
             <section>
                 {socketQuestions?.map(socketQuestion => (
                     <button
                         onClick={() => handleOpenModal(socketQuestion)}
                         key={socketQuestion.id}
+                        className="animate__animated animate__bounceIn "
                     >
                         <span></span>
                         {socketQuestion.question_about}

@@ -87,7 +87,7 @@ export default function TeacherPage() {
         <main className={styles.container}>
             <title>QuizQuiz | Área do professor</title>
             <header>
-                <h1>{`Olá ${userName}`}</h1>
+                <h1 className="animate__animated animate__bounceInLeft">{`Olá ${userName}`}</h1>
                 <button
                     title="Clique para criar nova questão."
                     onClick={() => setOpenModal(true)}
@@ -97,9 +97,9 @@ export default function TeacherPage() {
                 </button>
             </header>
             <section className={styles.studentSpace}>
-                <h1>Total de questões: {questionsAmount}</h1>
+                <h1 className="animate__animated animate__bounceInLeft">Total de questões: {questionsAmount}</h1>
                 {students.map((student) => (
-                    <div key={student.name}>
+                    <div key={student.name} className="animate__animated animate__bounceInRight">
                         <h3>Aluno: {student.name}</h3>
                         <div className={styles.wrapperInput}>
                             <span className={styles.leftInput}>0%</span>

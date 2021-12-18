@@ -3,7 +3,7 @@ import { FaUserFriends  } from 'react-icons/Fa';
 
 export default function Footer() {
     return (
-        <footer>
+        <footer className="animate__animated animate__bounceInUp">
             <div>
                 <a href="#">
                     <MdBook />
