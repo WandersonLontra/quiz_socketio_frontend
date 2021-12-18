@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { io } from "socket.io-client";
 
-import { AiOutlinePlus } from 'react-icons/Ai';
+import { MdOutlineAdd } from 'react-icons/Md';
 
 import { useUserContext } from "../../context/personContext";
 
@@ -92,7 +92,7 @@ export default function TeacherPage() {
                     title="Clique para criar nova questão."
                     onClick={() => setOpenModal(true)}
                 >
-                    <AiOutlinePlus />
+                    <MdOutlineAdd />
                     Novo
                 </button>
             </header>

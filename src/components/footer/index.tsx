@@ -1,5 +1,4 @@
-import { MdBook, MdSettings } from 'react-icons/Md';
-import { FaUserFriends  } from 'react-icons/Fa';
+import { MdBook, MdSettings, MdPeople } from 'react-icons/Md';
 
 export default function Footer() {
     return (
@@ -12,7 +11,7 @@ export default function Footer() {
             </div>
             <div>
                 <a href="#">
-                    <FaUserFriends />
+                    <MdPeople />
                     <span>Amigos</span>
                 </a>
             </div>
