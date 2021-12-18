@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { io } from "socket.io-client";
 
-import { MdOutlineAdd } from 'react-icons/Md';
+import { MdOutlineAdd } from 'react-icons/md';
 
 import { useUserContext } from "../../context/personContext";
 

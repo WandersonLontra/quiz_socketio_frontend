@@ -1,4 +1,4 @@
-import { MdBook, MdSettings, MdPeople } from 'react-icons/Md';
+import { MdBook, MdSettings, MdPeople } from 'react-icons/md';
 
 export default function Footer() {
     return (
