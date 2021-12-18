@@ -74,7 +74,12 @@
                 height: 25px;
                 border-radius: 20px;
                 background: var(--purple-500);
+            }
 
+            @media screen and (max-width: 500px) {
+                font-size: 1rem;
+                line-height: 1.625rem;
+                padding: 1.25rem;
             }
         }
     }
@@ -89,8 +94,7 @@
         bottom: 15vh;
     }
     footer {
-        position: absolute;
-        bottom: 0;
+        margin-top: auto;
         width: 100%;
         max-width: 768px;
 
@@ -101,10 +105,6 @@
         display: grid;
         background: var(--white);
         grid-template-columns: repeat(auto-fit,minmax(80px, 1fr));
-
-        @media screen and (max-width: 500px) {
-            padding: 1rem 0 0.5rem;
-        }
 
         a {
             text-align: center;
@@ -125,6 +125,18 @@
 
             &:hover {
                 color: var(--purple-600);
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            padding: 1rem 0 0.5rem;
+
+            a {
+                font-size: 2.5rem;
+
+                span{
+                    font-size: 0.875rem;
+                }
             }
         }
     }
