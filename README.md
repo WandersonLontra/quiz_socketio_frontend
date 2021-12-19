@@ -17,6 +17,7 @@
 - [ReactJS](https://pt-br.reactjs.org)
 - [NextJS](https://nextjs.org)
 - [Sass](https://sass-lang.com)
+- [Animate.css](https://animate.style)
 - [Typescript](https://www.typescriptlang.org)
 - [socket.io-client](https://socket.io)
 
