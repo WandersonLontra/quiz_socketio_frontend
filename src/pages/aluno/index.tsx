@@ -35,18 +35,20 @@ export default function StudentPage() {
     const [socketQuestions, setSocketQuestions] = useState<QuestionData[]>([]);
     const [questionIntoModal, setQuestionIntoModal] = useState({} as QuestionData);
     const [studentAnswers, setStudentAnswers] = useState({} as AnswersComparison);
-    
+ 
+
     const { userName } = useUserContext();
-    
+
     useEffect(() => {
-        if (studentAnswers.answerGiven){
+        if (studentAnswers.answerGiven) {
             let isCorrectAnswer = false;
-            if(studentAnswers.answerGiven?.length === studentAnswers.correctAnswer?.length){
-                const check = studentAnswers.answerGiven?.filter(({option}) => (
+
+            if (studentAnswers.answerGiven?.length === studentAnswers.correctAnswer?.length) {
+                const checkCorrectsAmount = studentAnswers.answerGiven?.filter(({ option }) => (
                     studentAnswers.correctAnswer?.includes(option)
                 ));
 
-                if(check.length === studentAnswers.correctAnswer?.length){
+                if (checkCorrectsAmount.length === studentAnswers.correctAnswer?.length) {
                     isCorrectAnswer = true;
                 } else {
                     isCorrectAnswer = false;
@@ -59,26 +61,27 @@ export default function StudentPage() {
                     isCorrectAnswer
                 }
 
-                socket.emit('studentAnswersData',sendAnswerData);
-            } else {    
+                socket.emit('studentAnswersData', sendAnswerData);
+            } else {
                 const sendAnswerData = {
                     id: studentAnswers.id,
                     question_about: studentAnswers.question_about,
                     student_name: userName,
                     isCorrectAnswer
                 }
-                socket.emit('studentAnswersData',sendAnswerData);
+
+                socket.emit('studentAnswersData', sendAnswerData);
             }
         }
-    },[studentAnswers])
+    }, [studentAnswers]);
 
-    ;(async () => {
+    ; (async () => {
         await socket.on('storageQuestions', (questions: QuestionData[]) => setSocketQuestions(questions));
 
         await socket.on('receivedQuestions', (question: QuestionData) => {
             const data = socketQuestions;
 
-            const isExisted = data.findIndex( ({id}) => id === question.id);
+            const isExisted = data.findIndex(({ id }) => id === question.id);
 
             if (isExisted === -1) {
                 data.push(question);
@@ -87,7 +90,7 @@ export default function StudentPage() {
         });
     })();
 
-    function handleOpenModal(question: QuestionData){
+    function handleOpenModal(question: QuestionData) {
         setQuestionIntoModal(question);
         setOpenModal(true);
     }
@@ -107,7 +110,7 @@ export default function StudentPage() {
                     <button
                         onClick={() => handleOpenModal(socketQuestion)}
                         key={socketQuestion.id}
-                        className="animate__animated animate__bounceIn "
+                        className="animate__animated animate__bounceIn"
                     >
                         <span></span>
                         {socketQuestion.question_about}

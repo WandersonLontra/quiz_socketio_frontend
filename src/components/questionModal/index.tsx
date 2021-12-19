@@ -35,7 +35,7 @@ interface QuestionModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
     question: QuestionData;
-    studentAnswer: Dispatch<SetStateAction<AnswersComparison>>
+    studentAnswer: Dispatch<SetStateAction<AnswersComparison>>;
 }
 
 export default function QuestionModal({ isOpen, onRequestClose, question, studentAnswer }: QuestionModalProps) {
