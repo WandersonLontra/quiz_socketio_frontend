@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
 import Modal from "react-modal";
 
@@ -8,6 +8,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 import AnswerOption from "./answerOption";
 
 import styles from './Modal.module.scss';
+import { useUserContext } from "../../context/personContext";
 
 Modal.setAppElement('#__next');
 
@@ -24,22 +25,16 @@ interface StudentAnswersData {
     isMarked: boolean;
 }
 
-interface AnswersComparison {
-    id: string;
-    question_about: string;
-    answerGiven: StudentAnswersData[];
-    correctAnswer: string[];
-}
-
 interface QuestionModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
     question: QuestionData;
-    studentAnswer: Dispatch<SetStateAction<AnswersComparison>>;
 }
 
-export default function QuestionModal({ isOpen, onRequestClose, question, studentAnswer }: QuestionModalProps) {
+export default function QuestionModal({ isOpen, onRequestClose, question }: QuestionModalProps) {
     const [studentAnswersMarked, setStudentAnswersMarked] = useState<StudentAnswersData[]>([]);
+
+    const { setStudentAnswers } = useUserContext();
 
     const handleClick = useCallback(() => {
         const student_answer = studentAnswersMarked.reduce((acc,{option,isMarked}) => {
@@ -62,7 +57,7 @@ export default function QuestionModal({ isOpen, onRequestClose, question, studen
             return acc;
         },[] as StudentAnswersData[]);
         
-        studentAnswer({
+        setStudentAnswers({
             id: question.id,
             question_about: question.question_about,
             answerGiven: student_answer,

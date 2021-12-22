@@ -6,7 +6,7 @@ import { useUserContext } from "../../context/personContext";
 
 import Footer from "../../components/footer";
 import styles from './Aluno.module.scss';
-import QuestionModal from "../../components/questionModal";
+import QuestionButtonList from "../../components/questionButtonList";
 
 type QuestionData = {
     id: string;
@@ -16,33 +16,16 @@ type QuestionData = {
     answers: string[];
 }
 
-interface StudentAnswersData {
-    option: string;
-    isMarked: boolean;
-}
-
-interface AnswersComparison {
-    id: string;
-    question_about: string;
-    answerGiven: StudentAnswersData[];
-    correctAnswer: string[];
-}
-
 const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || '', { transports: ["websocket"] });
 
 export default function StudentPage() {
-    const [openModal, setOpenModal] = useState(false);
     const [socketQuestions, setSocketQuestions] = useState<QuestionData[]>([]);
-    const [questionIntoModal, setQuestionIntoModal] = useState({} as QuestionData);
-    const [studentAnswers, setStudentAnswers] = useState({} as AnswersComparison);
  
-
-    const { userName } = useUserContext();
+    const { userName, studentAnswers } = useUserContext();
 
     useEffect(() => {
         if (studentAnswers.answerGiven) {
             let isCorrectAnswer = false;
-
             if (studentAnswers.answerGiven?.length === studentAnswers.correctAnswer?.length) {
                 const checkCorrectsAmount = studentAnswers.answerGiven?.filter(({ option }) => (
                     studentAnswers.correctAnswer?.includes(option)
@@ -75,7 +58,7 @@ export default function StudentPage() {
         }
     }, [studentAnswers]);
 
-    ; (async () => {
+    ;(async () => {
         await socket.on('storageQuestions', (questions: QuestionData[]) => setSocketQuestions(questions));
 
         await socket.on('receivedQuestions', (question: QuestionData) => {
@@ -90,15 +73,6 @@ export default function StudentPage() {
         });
     })();
 
-    function handleOpenModal(question: QuestionData) {
-        setQuestionIntoModal(question);
-        setOpenModal(true);
-    }
-
-    function handleUserModalClose() {
-        setOpenModal(false);
-    }
-
     return (
         <main className={styles.container}>
             <title>QuizQuiz | Área do aluno</title>
@@ -107,14 +81,10 @@ export default function StudentPage() {
 
             <section>
                 {socketQuestions?.map(socketQuestion => (
-                    <button
-                        onClick={() => handleOpenModal(socketQuestion)}
+                    <QuestionButtonList
                         key={socketQuestion.id}
-                        className="animate__animated animate__bounceIn"
-                    >
-                        <span></span>
-                        {socketQuestion.question_about}
-                    </button>
+                        socketQuestion={socketQuestion}
+                    />
                 ))}
             </section>
 
@@ -123,13 +93,6 @@ export default function StudentPage() {
             </p>
 
             <Footer />
-
-            <QuestionModal
-                isOpen={openModal}
-                onRequestClose={handleUserModalClose}
-                question={questionIntoModal}
-                studentAnswer={setStudentAnswers}
-            />
         </main>
     )
 }
